@@ -1,0 +1,25 @@
+{
+  "name": "json-to-playwright",
+  "version": "1.0.0",
+  "description": "Convert Chrome recorder JSON to valid Playwright scripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davekiss/json-to-playwright.git"
+  },
+  "keywords": [
+    "playwright"
+  ],
+  "author": "Dave Kiss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davekiss/json-to-playwright/issues"
+  },
+  "homepage": "https://github.com/davekiss/json-to-playwright#readme",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
