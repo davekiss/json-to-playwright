@@ -1,0 +1,84 @@
+{
+    "title": "Baggu",
+    "steps": [
+        {
+            "type": "setViewport",
+            "width": 935,
+            "height": 989,
+            "deviceScaleFactor": 1,
+            "isMobile": false,
+            "hasTouch": false,
+            "isLandscape": false
+        },
+        {
+            "type": "navigate",
+            "url": "https://www.baggu.com/",
+            "assertedEvents": [
+                {
+                    "type": "navigation",
+                    "url": "https://www.baggu.com/",
+                    "title": "BAGGU"
+                }
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Enter email…"
+                ],
+                [
+                    "input"
+                ],
+                [
+                    "xpath///*[@id=\"footer\"]/div[1]/div[1]/form/div/div/input"
+                ],
+                [
+                    "pierce/input"
+                ]
+            ],
+            "offsetY": 22.4296875,
+            "offsetX": 78
+        },
+        {
+            "type": "change",
+            "value": "abc@example.com",
+            "selectors": [
+                [
+                    "aria/Enter email…"
+                ],
+                [
+                    "input"
+                ],
+                [
+                    "xpath///*[@id=\"footer\"]/div[1]/div[1]/form/div/div/input"
+                ],
+                [
+                    "pierce/input"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/SUBMIT"
+                ],
+                [
+                    "#footer button"
+                ],
+                [
+                    "xpath///*[@id=\"footer\"]/div[1]/div[1]/form/div/button"
+                ],
+                [
+                    "pierce/#footer button"
+                ]
+            ],
+            "offsetY": 12.4296875,
+            "offsetX": 83
+        }
+    ]
+}
