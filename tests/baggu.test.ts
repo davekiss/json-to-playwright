@@ -12,6 +12,12 @@ const snapshot = fs.readFileSync(
   "utf8"
 );
 
+const snapshotActionsOnly = fs.readFileSync(
+  path.resolve(__dirname, "./baggu.snapshot.actionsOnly.js"),
+  "utf8"
+);
+
 test("converts Baggu subscribe successfully", () => {
   expect(jsonToPlaywright(jsonData)).toEqual(snapshot);
+  expect(jsonToPlaywright(jsonData, { actionsOnly: true })).toEqual(snapshotActionsOnly)
 });

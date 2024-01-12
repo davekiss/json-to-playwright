@@ -1,9 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 // Function to generate Playwright script
-function generatePlaywrightScript(data) {
-    let script = `test.describe("${data.title}", () => {\n`;
-    script += `  test("tests ${data.title}", async ({ page }) => {\n`;
+function generatePlaywrightScript(data, options) {
+    let script = '';
+    if ((options === null || options === void 0 ? void 0 : options.actionsOnly) !== true) {
+        script += `test.describe("${data.title}", () => {\n`;
+        script += `  test("tests ${data.title}", async ({ page }) => {\n`;
+    }
     data.steps.forEach(step => {
         if (step.type === "setViewport") {
             script += setViewport(step);
@@ -14,7 +17,7 @@ function generatePlaywrightScript(data) {
         else if (step.type === "click" || step.type === "change") {
             script += performAction(step);
         }
-        if (step.assertedEvents) {
+        if (step.assertedEvents && (options === null || options === void 0 ? void 0 : options.actionsOnly) !== true) {
             step.assertedEvents.forEach(event => {
                 if (event.type === "navigation") {
                     script += `    expect(page.url()).toBe('${event.url}');\n`;
@@ -22,8 +25,10 @@ function generatePlaywrightScript(data) {
             });
         }
     });
-    script += `  });\n`;
-    script += `});\n`;
+    if ((options === null || options === void 0 ? void 0 : options.actionsOnly) !== true) {
+        script += `  });\n`;
+        script += `});\n`;
+    }
     return script;
 }
 exports.default = generatePlaywrightScript;
@@ -44,4 +49,3 @@ const chooseBestSelector = (selectors) => {
         return undefined;
     return selectors.flatMap(s => s).find(sel => !sel.startsWith("xpath") && !sel.startsWith("pierce") && !sel.startsWith("aria"));
 };
-// module.exports = generatePlaywrightScript

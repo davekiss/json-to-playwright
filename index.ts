@@ -22,9 +22,13 @@ export interface JsonInput {
 }
 
 // Function to generate Playwright script
-export default function generatePlaywrightScript(data: JsonInput): string {
-    let script = `test.describe("${data.title}", () => {\n`;
-    script += `  test("tests ${data.title}", async ({ page }) => {\n`;
+export default function generatePlaywrightScript(data: JsonInput, options?: { actionsOnly: boolean }): string {
+    let script = '';
+
+    if (options?.actionsOnly !== true) {
+        script += `test.describe("${data.title}", () => {\n`;
+        script += `  test("tests ${data.title}", async ({ page }) => {\n`;
+    }
 
     data.steps.forEach(step => {
         if (step.type === "setViewport") {
@@ -35,7 +39,7 @@ export default function generatePlaywrightScript(data: JsonInput): string {
             script += performAction(step);
         }
 
-        if (step.assertedEvents) {
+        if (step.assertedEvents && options?.actionsOnly !== true) {
             step.assertedEvents.forEach(event => {
                 if (event.type === "navigation") {
                     script += `    expect(page.url()).toBe('${event.url}');\n`;
@@ -44,8 +48,10 @@ export default function generatePlaywrightScript(data: JsonInput): string {
         }
     });
 
-    script += `  });\n`;
-    script += `});\n`;
+    if (options?.actionsOnly !== true) {
+        script += `  });\n`;
+        script += `});\n`;
+    }
 
     return script;
 };
