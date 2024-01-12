@@ -37,3 +37,11 @@ writeFile('playwrightTest.ts', playwrightScript, (err) => {
 // Or you can directly log the script
 console.log(playwrightScript);
 ```
+
+## Generating actions only
+
+To skip the `test` wrapper and `expect` assertions, you can output actions only by passing a second config object:
+
+```js
+const playwrightScript = generatePlaywrightScript(data, { actionsOnly: true });
+```
