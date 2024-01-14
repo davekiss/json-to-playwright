@@ -1,8 +1,9 @@
 {
   "name": "json-to-playwright",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Convert Chrome recorder JSON to valid Playwright scripts",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest"
   },
